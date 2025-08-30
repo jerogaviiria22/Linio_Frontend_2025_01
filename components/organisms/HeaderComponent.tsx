@@ -24,7 +24,7 @@ export default function HeaderComponent() {
       </div>
 
       <div className="w-full bg-[#C300A2]">
-        <div className="max-w-[1200px]  flex items-center h-16 px-4">
+        <div className=" flex items-center h-18 px-4">
 
           {/* Logo */}
           <div className="mr-15">
@@ -45,14 +45,14 @@ export default function HeaderComponent() {
 
 
           {/* Barra de búsqueda */}
-          <div className="flex items-center w-full max-w-lg bg-white rounded-full overflow-hidden ml-5">
+          <div className="flex items-center w-full max-w-3xl bg-white rounded-full overflow-hidden ml-5">
             <input
               type="text"
               placeholder="Buscar en Linio"
-              className="flex-1 px-4 py-3.5 text-sm text-gray-2000 outline-none border-none"
+              className="flex-1 px-3 py-2 text-sm text-gray-2000 outline-none border-none"
             />
-            <button className="bg-[#3b4552] w-9 h-9 flex items-center justify-center rounded-full mr-1">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <button className="bg-[#495867] w-[46px] h-[46px] flex items-center justify-center rounded-full ">
+              <svg xmlns="https://images.falabella.com/v3/assets/blt088e6fffbba20f16/blt71d9874fe32f0ffa/63b733a51d6eeb10b65d828c/hr-3-search-desktop.svg" className="h-8 w-8 text-white mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 1110.5 3a7.5 7.5 0 016.15 13.65z" />
               </svg>
             </button>
@@ -60,21 +60,51 @@ export default function HeaderComponent() {
 
 
           {/* Opciones de usuario */}
-          <nav className="flex items-center gap-4 text-white text-sm font-medium ml-4">
-            <a href="#" className="hover:underline">Hola, Inicia sesión</a>
-            <a href="#" className="hover:underline">Mis compras</a>
-            <span className="border-r border-white h-5"></span>
-            <a href="#">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-              </svg>
-            </a>
-            <a href="#" className="relative">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2 9h12l2-9M10 21a2 2 0 104 0" />
-              </svg>
-              <span className="absolute -top-1 -right-2 bg-white text-[#C300A2] text-xs font-bold rounded-full px-1">0</span>
-            </a>
+          <nav className="flex items-center gap-4 text-white text-base font-medium ml-4">
+            <div className="flex items-center gap-4 text-white text-base font-semibold">
+              {/* Hola, Inicia sesión */}
+              <a href="#" className="flex flex-col leading-tight hover:underline">
+                <span className="font-bold leading-[16px] text-[19px] text-[color:var(--text-color)] no-underline mt-[5px] font-semibold">Hola,</span>
+                <span className="flex items-center mb-2 gap-1 font-bold leading-[16px] font-black text-[19px] text-[color:var(--text-color)] no-underline mt-[5px]">
+                  Inicia sesión
+                  <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </span>
+              </a>
+              {/* Separador */}
+              <span className="border-r border-white/50 h-14"></span>
+              {/* Mis compras */}
+              <a href="#" className="flex flex-col leading-tight hover:underline">
+                <span className="font-bold leading-[16px] text-[19px] text-[color:var(--text-color)] no-underline mt-[5px] font-semibold">Mis</span>
+                <span className="flex items-center mb-2  font-bold leading-[16px] font-black text-[19px] text-[color:var(--text-color)] no-underline mt-[3px]">
+                  compras
+                </span>
+              </a>
+
+              {/* Separador */}
+              <span className="border-r border-white/50 h-14"></span>
+
+              {/* Favoritos */}
+              <a href="#">
+                <svg xmlns="https://images.falabella.com/v3/assets/blt088e6fffbba20f16/blt6fa31d5978c12f46/64b04460ade08c618bcb35a5/Ico_mislistas_header.svg" className="h-8 w-8" fill="none" viewBox="0 0 23 23" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.3} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                </svg>
+              </a>
+              {/* Separador */}
+              <span className="border-r border-white/50 h-14"></span>
+
+              {/* Carrito con badge */}
+              <a href="#">
+                <svg xmlns="https://images.falabella.com/v3/assets/blt088e6fffbba20f16/blt6c838e6cbb1d6839/63bd168518cb6062ad644b6b/cart-desktop.svg" className="h-8 w-8" fill="none" viewBox="0 0 23 23" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.3} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                </svg>
+                <span className="absolute -top-1 -right-2 bg-[#3b4552] text-white text-xs font-bold rounded-full w-[18px] h-[18px] flex items-center justify-center">
+                  0
+                </span>
+              </a>
+            </div>
+
           </nav>
         </div>
       </div>
