@@ -18,29 +18,6 @@ const offers = [
 
 const DontMissIt = () => {
   return (
-//    <div className="w-full max-w-[1200px] mx-auto mt-10 p-4">
-//       <h2 className="text-2xl font-semibold text-gray-800 mb-6">¡No te lo pierdas!</h2>
-//       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-//         {/* El primer elemento es más ancho, ocupa 2/3 en pantallas grandes */}
-//         <div key={0} className="relative w-[650px] h-[400px] rounded-xl overflow-hidden shadow-md col-span-1 md:col-span-1 lg:col-span-2">
-//           <img src={offers[0].image} alt={offers[0].title} className="w-full h-full" />
-//           <div className="absolute top-4 left-4">
-//           </div>
-//         </div>
-
-//         {/* Los siguientes dos elementos tienen el mismo ancho */}
-//        <div className="flex gap-4">
-//           {offers.slice(1).map((offer, index) => (
-//             <div key={index + 1} className="relative w-[800px] h-[400px] rounded-xl overflow-hidden shadow-md">
-//               <img src={offer.image} alt={offer.title} className="w-full h-full" />
-//               <div className="absolute top-4 left-4">
-//               </div>
-//             </div>
-//           ))}
-//         </div>
-//       </div>
-//     </div>
-
 
  <div className="w-full max-w-[1200px] mx-auto mt-10 p-4">
       <h2 className="text-2xl font-semibold text-gray-800 mb-6">¡No te lo pierdas!</h2>

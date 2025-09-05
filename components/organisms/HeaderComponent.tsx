@@ -1,6 +1,10 @@
-export default function HeaderComponent() {
-  return (
+"use client";
 
+import React, { useState } from 'react';
+
+export default function HeaderComponent() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  return (
     <header className="w-full">
       {/* Barra superior blanca */}
       <div className="w-full bg-white border-b border-gray-200">
@@ -63,27 +67,56 @@ export default function HeaderComponent() {
           <nav className="flex items-center gap-4 text-white text-base font-medium ml-4">
             <div className="flex items-center gap-4 text-white text-base font-semibold">
               {/* Hola, Inicia sesión */}
-              <a href="#" className="flex flex-col leading-tight hover:underline">
-                <span className="font-bold leading-[16px] text-[19px] text-[color:var(--text-color)] no-underline mt-[5px] font-semibold">Hola,</span>
-                <span className="flex items-center mb-2 gap-1 font-bold leading-[16px] font-black text-[19px] text-[color:var(--text-color)] no-underline mt-[5px]">
-                  Inicia sesión
-                  <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                  </svg>
-                </span>
-              </a>
+              <div
+                className="relative"
+                onMouseEnter={() => setIsMenuOpen(true)}
+                onMouseLeave={() => setIsMenuOpen(false)}
+              >
+                <a href="#" className="flex flex-col leading-tight hover:underline">
+                  <span className="font-bold leading-[16px] text-[19px] text-white no-underline mt-[5px] font-semibold">Hola,</span>
+                  <span className="flex items-center mb-2 gap-1 font-bold leading-[16px] font-black text-[19px] text-white no-underline mt-[5px]">
+                    Inicia sesión
+                    <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </span>
+                </a>
+                {/* Menú desplegable */}
+                {isMenuOpen && (
+                  <div
+                    className="absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-50"
+                    role="menu"
+                    aria-orientation="vertical"
+                    aria-labelledby="menu-button"
+                  >
+                    <div className="py-1" role="none">
+                      <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Inicia sesión</a>
+                      <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Regístrate</a>
+                      <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Mi cuenta</a>
+                      <hr className="my-2 border-gray-200" />
+                      <a href="#" className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">
+                        <svg className="w-5 h-5 mr-2 text-purple-600" viewBox="0 0 24 24" fill="currentColor">
+                          <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8zM12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zm0 8a3 3 0 110-6 3 3 0 010 6zm0-4a1 1 0 100 2 1 1 0 000-2z"/>
+                        </svg>
+                        CMR Puntos
+                      </a>
+                    </div>
+                  </div>
+                )}
+              </div>
+              
               {/* Separador */}
               <span className="border-r border-white/50 h-14"></span>
               {/* Mis compras */}
               <a href="#" className="flex flex-col leading-tight hover:underline">
-                <span className="font-bold leading-[16px] text-[19px] text-[color:var(--text-color)] no-underline mt-[5px] font-semibold">Mis</span>
-                <span className="flex items-center mb-2  font-bold leading-[16px] font-black text-[19px] text-[color:var(--text-color)] no-underline mt-[3px]">
+                <span className="font-bold leading-[16px] text-[19px] text-white no-underline mt-[5px] font-semibold">Mis</span>
+                <span className="flex items-center mb-2 font-bold leading-[16px] font-black text-[19px] text-white no-underline mt-[3px]">
                   compras
                 </span>
               </a>
               {/* Separador */}
               <span className="border-r border-white/50 h-14"></span>
-               {/* Favoritos */}
+                {/* Favoritos */}
               <a href="#">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.3} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
@@ -115,7 +148,7 @@ export default function HeaderComponent() {
         <div className="hidden lg:flex items-center space-x-4 text-sm font-medium">
           <a href="#" className="hover:text-[#c300a2] transition-colors text-[#495867]">Vende en falabella.com</a>
           {/* <a href="#" className="hover:text-[#c300a2] transition-colors text-[#495867]">Tarjetas y cuentas</a> */}
-                    <a href="#" className="flex items-center space-x-1 hover:text-[#c300a2] transition-colors text-[#495867]">
+                      <a href="#" className="flex items-center space-x-1 hover:text-[#c300a2] transition-colors text-[#495867]">
             <span>Tarjetas y cuentas</span>
             <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
