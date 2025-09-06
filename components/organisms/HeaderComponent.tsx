@@ -6,6 +6,33 @@ import React, { useState } from 'react';
 export default function HeaderComponent() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [currentView, setCurrentView] = useState('header');
+  const [isOpen, setIsOpen] = useState(false);
+  const categories = {
+    Tecnología: {
+      "Celulares y teléfonos": ["Smartphones", "Smartwatches", "Accesorios", "Carcasas", "Cargadores y cables"],
+      "Tv y video": ["Televisores", "Accesorios", "Proyección", "Teatro en casa"],
+      "Audio": ["Audífonos", "Parlantes bluetooth", "Barras de sonido", "Mini componentes"],
+      "Computación": ["Computadores portátiles", "PC de escritorio", "Tablets", "Accesorios de Tablets", "Monitores", "Accesorios de computadoras", "Almacenamiento", "WebCams", "Impresoras"],
+      "Zona gamer": ["Play station", "Nintendo", "Xbox", "Accesorios gaming"],
+      "Cámaras": ["Cámaras profesionales", "Cámaras de seguridad", "Drones y accesorios"],
+      "Smart Home": ["Aspiradora robot", "Iluminación inteligente", "Calefacción inteligente", "Streaming", "Asistente por voz", "Seguridad y vigilancia"],
+    },
+    Hogar: {
+      Cocina: ["Electrodomésticos", "Utensilios", "Decoración"],
+      Dormitorio: ["Camas", "Colchones", "Almohadas"],
+    },
+    Moda: {
+      Hombre: ["Camisas", "Jeans", "Zapatos"],
+      Mujer: ["Vestidos", "Blusas", "Zapatos"],
+    },
+  };
+  const [activeCategory, setActiveCategory] = useState<keyof typeof categories>("Tecnología");
+  const slugify = (str: string) =>
+    str
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .toLowerCase()
+      .replace(/\s+/g, "-");
 
   if (currentView === 'login') {
     return <AmazonLogin />;
@@ -46,12 +73,88 @@ export default function HeaderComponent() {
           </div>
 
           {/* Categorías */}
-          <button className="flex items-center gap-2 px-4 py-1.5 border border-white text-white font-semibold rounded-full bg-[#C300A2] hover:bg-[#a00085] transition">
-            Categorías
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-            </svg>
-          </button>
+
+          <div className="inline-block text-left"
+          >
+
+            {/* Botón */}
+            <button
+              onClick={() => {
+                setIsOpen(!isOpen);
+                setActiveCategory("Tecnología");
+              }}
+
+
+              className="flex items-center gap-2 px-4 py-1.5 border border-white text-white font-semibold rounded-full bg-[#C300A2] "
+            >
+              Categorías
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className={`h-8 w-4 transform transition-transform ${isOpen ? "rotate-180" : ""}`}
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+
+            {/* Mega Menú */}
+            {isOpen && (
+              <div className="absolute top-[110px] left-0 w-screen h-[490px] bg-white shadow-lg z-50 flex"
+                onMouseLeave={() => setIsOpen(false)}>
+                {/* Categorías principales */}
+                <div className="w-56 border-r border-gray-200 bg-gray-50 mt-5 ml-5">
+                  {Object.keys(categories).map((cat) => (
+                    <button
+                      key={cat}
+                      className={`w-full text-left px-4 py-2 font-medium text-sm  rounded-3xl text-black hover:bg-pink-100 ${activeCategory === cat ? "bg-pink-100 text-pink-700" : ""
+                        }`}
+                      onMouseEnter={() => setActiveCategory(cat as keyof typeof categories)}
+                    >
+                      <div className="flex items-center justify-between w-full">
+                        <span>{cat}</span>
+                        <svg fill="currentColor" width="18px" height="18px" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                          <g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34z"></path></g>
+                        </svg>
+                      </div>
+                    </button>
+                  ))}
+                </div>
+
+
+                {/* Subcategorías dinámicas */}
+                <div className="flex-1 p-6 grid grid-cols-3 gap-6 overflow-y-auto">
+                  {Object.entries(categories[activeCategory]).map(([subcat, items]) => (
+                    <div key={subcat}>
+                      <a
+                        href={`/categorias/${slugify(activeCategory)}/${slugify(subcat)}`}
+                        className="block font-semibold text-gray-600 mb-2 hover:text-black"
+                      >
+                        {subcat}
+                      </a>
+                      <ul className="space-y-1">
+                        {items.map((item) => {
+                          return (
+                            <li key={item}>
+                              <a
+                                href={`/categorias/${slugify(activeCategory)}/${slugify(item)}`}
+                                className="text-sm text-gray-600 hover:text-black"
+                              >
+                                {item}
+                              </a>
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    </div>
+                  ))}
+
+                </div>
+              </div>
+            )}
+          </div>
+
 
 
           {/* Barra de búsqueda */}
@@ -106,7 +209,7 @@ export default function HeaderComponent() {
                 {/* Menú desplegable */}
                 {isMenuOpen && (
                   <div
-                    className="absolute right-0 top-full w-56 shadow-lg bg-white ring-black ring-opacity-5 focus:outline-none z-50 pt-2"
+                    className="absolute right-0 top-full w-56 shadow-lg bg-white focus:outline-none z-50 pt-2"
                     role="menu"
                     aria-orientation="vertical"
                     aria-labelledby="menu-button"
