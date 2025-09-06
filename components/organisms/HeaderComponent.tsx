@@ -69,28 +69,44 @@ export default function HeaderComponent() {
           </div>
 
 
-          {/* Opciones de usuario */}
           <nav className="flex items-center gap-4 text-white text-base font-medium ml-4">
             <div className="flex items-center gap-4 text-white text-base font-semibold">
-              {/* Hola, Inicia sesión */}
               <div
                 className="relative"
                 onMouseEnter={() => setIsMenuOpen(true)}
                 onMouseLeave={() => setIsMenuOpen(false)}
               >
-                <a href="#" className="flex flex-col leading-tight hover:underline">
-                  <span className="font-bold leading-[16px] text-[19px] text-white no-underline mt-[5px] font-semibold">Hola,</span>
+                {/* Botón */}
+                <a
+                  href="#"
+                  className="flex flex-col leading-tight hover:underline"
+                >
+                  <span className="font-bold leading-[16px] text-[19px] text-white no-underline mt-[5px] font-semibold">
+                    Hola,
+                  </span>
                   <span className="flex items-center mb-2 gap-1 font-bold leading-[16px] font-black text-[19px] text-white no-underline mt-[5px]">
                     Inicia sesión
-                    <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="w-4 h-4"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M19 9l-7 7-7-7"
+                      />
                     </svg>
                   </span>
                 </a>
-                {/* Menú desplegable de inicia sesión*/}
+
+                {/* Menú desplegable */}
                 {isMenuOpen && (
                   <div
-                    className="absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-50"
+                    className="absolute right-0 top-full w-56 shadow-lg bg-white ring-black ring-opacity-5 focus:outline-none z-50 pt-2"
                     role="menu"
                     aria-orientation="vertical"
                     aria-labelledby="menu-button"
@@ -100,15 +116,38 @@ export default function HeaderComponent() {
                         href="#"
                         className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                         role="menuitem"
-                        onClick={() => { setIsMenuOpen(false); setCurrentView('login'); }}
+                        onClick={() => {
+                          setIsMenuOpen(false);
+                          setCurrentView("login");
+                        }}
                       >
                         Inicia sesión
                       </a>
-                      <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Regístrate</a>
-                      <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Mi cuenta</a>
+                      <a
+                        href="#"
+                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                        role="menuitem"
+                      >
+                        Regístrate
+                      </a>
+                      <a
+                        href="#"
+                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                        role="menuitem"
+                      >
+                        Mi cuenta
+                      </a>
                       <hr className="my-2 border-gray-200" />
-                      <a href="#" className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">
-                        <svg className="w-5 h-5 mr-2 text-purple-600" viewBox="0 0 24 24" fill="currentColor">
+                      <a
+                        href="#"
+                        className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                        role="menuitem"
+                      >
+                        <svg
+                          className="w-5 h-5 mr-2 text-purple-600"
+                          viewBox="0 0 24 24"
+                          fill="currentColor"
+                        >
                           <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8zM12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zm0 8a3 3 0 110-6 3 3 0 010 6zm0-4a1 1 0 100 2 1 1 0 000-2z" />
                         </svg>
                         CMR Puntos
@@ -117,6 +156,11 @@ export default function HeaderComponent() {
                   </div>
                 )}
               </div>
+
+
+
+
+
 
               {/* Separador */}
               <span className="border-r border-white/50 h-14"></span>
