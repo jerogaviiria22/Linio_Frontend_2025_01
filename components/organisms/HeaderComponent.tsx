@@ -1,9 +1,15 @@
 "use client";
 
+import AmazonLogin from '@/app/(webpage)/login/page';
 import React, { useState } from 'react';
 
 export default function HeaderComponent() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [currentView, setCurrentView] = useState('header');
+
+  if (currentView === 'login') {
+    return <AmazonLogin />;
+  }
   return (
     <header className="w-full">
       {/* Barra superior blanca */}
@@ -81,7 +87,7 @@ export default function HeaderComponent() {
                     </svg>
                   </span>
                 </a>
-                {/* Menú desplegable */}
+                {/* Menú desplegable de inicia sesión*/}
                 {isMenuOpen && (
                   <div
                     className="absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-50"
@@ -90,13 +96,20 @@ export default function HeaderComponent() {
                     aria-labelledby="menu-button"
                   >
                     <div className="py-1" role="none">
-                      <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Inicia sesión</a>
+                      <a
+                        href="#"
+                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                        role="menuitem"
+                        onClick={() => { setIsMenuOpen(false); setCurrentView('login'); }}
+                      >
+                        Inicia sesión
+                      </a>
                       <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Regístrate</a>
                       <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Mi cuenta</a>
                       <hr className="my-2 border-gray-200" />
                       <a href="#" className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">
                         <svg className="w-5 h-5 mr-2 text-purple-600" viewBox="0 0 24 24" fill="currentColor">
-                          <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8zM12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zm0 8a3 3 0 110-6 3 3 0 010 6zm0-4a1 1 0 100 2 1 1 0 000-2z"/>
+                          <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8zM12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zm0 8a3 3 0 110-6 3 3 0 010 6zm0-4a1 1 0 100 2 1 1 0 000-2z" />
                         </svg>
                         CMR Puntos
                       </a>
@@ -104,7 +117,7 @@ export default function HeaderComponent() {
                   </div>
                 )}
               </div>
-              
+
               {/* Separador */}
               <span className="border-r border-white/50 h-14"></span>
               {/* Mis compras */}
@@ -116,7 +129,7 @@ export default function HeaderComponent() {
               </a>
               {/* Separador */}
               <span className="border-r border-white/50 h-14"></span>
-                {/* Favoritos */}
+              {/* Favoritos */}
               <a href="#">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.3} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
@@ -136,34 +149,34 @@ export default function HeaderComponent() {
         </div>
       </div>
       <div className="flex justify-center w-full bg-white text-gray-800 border-b border-gray-200">
-      <div className="w-full max-w-[14100px] px-4 py-3 flex items-center justify-between">
-        {/* Sección de "Ingresa tu ubicación" */}
-        <div className="flex items-center space-x-2 cursor-pointer text-sm font-semibold">
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-500" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/>
-          </svg>
-          <span className="text-[#495867]">Ingresa tu ubicación</span>
-        </div>
-        {/* Sección de "Vende en Falabella" */}
-        <div className="hidden lg:flex items-center space-x-4 text-sm font-medium">
-          <a href="#" className="hover:text-[#c300a2] transition-colors text-[#495867]">Vende en falabella.com</a>
-          {/* <a href="#" className="hover:text-[#c300a2] transition-colors text-[#495867]">Tarjetas y cuentas</a> */}
-                      <a href="#" className="flex items-center space-x-1 hover:text-[#c300a2] transition-colors text-[#495867]">
-            <span>Tarjetas y cuentas</span>
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+        <div className="w-full max-w-[14100px] px-4 py-3 flex items-center justify-between">
+          {/* Sección de "Ingresa tu ubicación" */}
+          <div className="flex items-center space-x-2 cursor-pointer text-sm font-semibold">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-500" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z" />
             </svg>
-          </a>
-          <a href="#" className="hover:text-[#c300a2] transition-colors text-[#495867]">Novios</a>
-          <a href="#" className="flex items-center space-x-1 hover:text-[#c300a2] transition-colors text-[#495867]">
-            <span>Ayuda</span>
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-            </svg>
-          </a>
+            <span className="text-[#495867]">Ingresa tu ubicación</span>
+          </div>
+          {/* Sección de "Vende en Falabella" */}
+          <div className="hidden lg:flex items-center space-x-4 text-sm font-medium">
+            <a href="#" className="hover:text-[#c300a2] transition-colors text-[#495867]">Vende en falabella.com</a>
+            {/* <a href="#" className="hover:text-[#c300a2] transition-colors text-[#495867]">Tarjetas y cuentas</a> */}
+            <a href="#" className="flex items-center space-x-1 hover:text-[#c300a2] transition-colors text-[#495867]">
+              <span>Tarjetas y cuentas</span>
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </a>
+            <a href="#" className="hover:text-[#c300a2] transition-colors text-[#495867]">Novios</a>
+            <a href="#" className="flex items-center space-x-1 hover:text-[#c300a2] transition-colors text-[#495867]">
+              <span>Ayuda</span>
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </a>
+          </div>
         </div>
       </div>
-    </div>
     </header>
   )
 }
